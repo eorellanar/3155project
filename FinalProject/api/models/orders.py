@@ -7,9 +7,7 @@ from ..dependencies.database import Base
 class Order(Base):
     __tablename__ = "orders"
 
-    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    customer_name = Column(String(100))
     order_date = Column(DATETIME, nullable=False, server_default=str(datetime.now()))
-    description = Column(String(300))
-
-    order_details = relationship("OrderDetail", back_populates="order")
+    tracking_num = Column(Integer)
+    order_status = Column(String(100))
+    total_price = Column(DECIMAL(4,2))
