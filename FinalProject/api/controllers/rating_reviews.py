@@ -1,13 +1,15 @@
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status, Response, Depends
-from ..models import menu_items as model
+from ..models import orders as model
 from sqlalchemy.exc import SQLAlchemyError
 
+
 def create(db: Session, request):
-    new_item = model.MenuItem(
-        dishes = request.dishes,
-        price = request.price
+    new_item = model.RatingReview(
+        review_text = request.review_text,
+        rating = request.rating
     )
+
     try:
         db.add(new_item)
         db.commit()
@@ -18,9 +20,10 @@ def create(db: Session, request):
 
     return new_item
 
+
 def read_all(db: Session):
     try:
-        result = db.query(model.MenuItem).all()
+        result = db.query(model.RatingReview).all()
     except SQLAlchemyError as e:
         error = str(e.__dict__['orig'])
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
