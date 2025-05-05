@@ -26,6 +26,7 @@ def read_all(db: Session):
         error = str(e.__dict__['orig'])
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
 
+# Adjusted read_one - Jordon
 def read_one(db: Session, item_id: int):
     item = db.query(model.OrderDetail).filter(model.OrderDetail.id == item_id).first()
     if not item:
