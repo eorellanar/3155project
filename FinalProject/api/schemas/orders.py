@@ -8,10 +8,17 @@ from .order_details import OrderDetail
 class OrderBase(BaseModel):
     customer_name: str
     description: Optional[str] = None
+    delivery_type: str
 
 
-class OrderCreate(OrderBase):
-    pass
+class OrderCreate(BaseModel):
+    customer_name: str
+    description: Optional[str] = None
+    promo_code: Optional[str] = None
+    delivery_type: Optional[str] = None
+
+    class Config:
+        orm_mode = True
 
 
 class OrderUpdate(BaseModel):
