@@ -4,6 +4,7 @@ from ..dependecies.database import Base
 
 class MenuItem(Base):
     __tablename__ = 'menu_items'
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     dishes = Column(String(100))
     ingredients = Column(String(100))
     price = Column(Decimal(4,2))
