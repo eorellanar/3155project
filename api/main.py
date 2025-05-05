@@ -3,7 +3,7 @@ from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from .models import model_loader
 from .dependencies.config import conf
-from .routes import indexRoute
+from .routers import indexRoute
 
 
 app = FastAPI()
